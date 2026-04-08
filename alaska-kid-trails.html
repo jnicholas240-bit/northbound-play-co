@@ -4,6 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alaska Kid Trails — Northbound Play Co</title>
+<meta name="description" content="A dad's field guide to 10 kid-friendly hiking trails around Anchorage, AK. Meltdown ratings, gear lists, wildlife protocols, and Bible verses. Field tested with four kids.">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Alaska Kid Trails — 10 Family Hikes Near Anchorage">
+<meta property="og:description" content="Meltdown ratings, real gear lists, and honest dad commentary. Field tested by a father of four across every Alaska season.">
+<meta property="og:image" content="northbound-logo.png">
+<meta property="og:url" content="https://olive-octopus-568173.hostingersite.com/alaska-kid-trails.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Alaska Kid Trails — 10 Family Hikes Near Anchorage">
+<meta name="twitter:description" content="Meltdown ratings, real gear lists, and honest dad commentary. Field tested with four kids.">
+<meta name="twitter:image" content="northbound-logo.png">
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Barlow+Condensed:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -917,6 +930,91 @@
     color: var(--amber);
     font-weight: 700;
     flex-shrink: 0;
+  }
+
+  /* ── SHARE SECTION ── */
+  .share-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 36px 28px;
+    text-align: center;
+    margin-top: 48px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .share-section h3 {
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+    color: var(--white);
+  }
+
+  .share-section p {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  .share-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.15s, transform 0.1s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .share-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .share-btn.facebook {
+    background: #1877F2;
+    color: #fff;
+  }
+
+  .share-btn.copy-link {
+    background: var(--orange);
+    color: #fff;
+  }
+
+  .share-btn.copy-link:hover {
+    background: var(--orange2);
+  }
+
+  .share-btn.text {
+    background: #25D366;
+    color: #fff;
+  }
+
+  .share-note {
+    font-size: 12px;
+    color: var(--muted2);
+    margin-top: 16px;
+  }
+
+  @media (max-width: 640px) {
+    .share-buttons { flex-direction: column; }
+    .share-btn { justify-content: center; }
   }
 
   /* ── FOOTER ── */
@@ -2350,6 +2448,26 @@
       <li>AllTrails — search "Anchorage, AK" for current conditions and reviews</li>
       <li>Alaska Trails — aktrails.org</li>
     </ul>
+  </div>
+</div>
+
+<!-- ── SHARE SECTION ── -->
+<div class="closing" style="padding-top: 0;">
+  <div class="share-section">
+    <h3>Know Another Hiking Parent?</h3>
+    <p>If this guide helped you, send it to one friend. That's how this thing grows.</p>
+    <div class="share-buttons">
+      <a class="share-btn text" href="sms:?&body=Found%20this%20free%20Alaska%20trail%20guide%20for%20families%20%E2%80%94%20meltdown%20ratings%20and%20everything.%20https%3A%2F%2Folive-octopus-568173.hostingersite.com%2Falaska-kid-trails.html" target="_blank">
+        Text a Friend
+      </a>
+      <a class="share-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Folive-octopus-568173.hostingersite.com%2Falaska-kid-trails.html" target="_blank" rel="noopener">
+        Share on Facebook
+      </a>
+      <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://olive-octopus-568173.hostingersite.com/alaska-kid-trails.html');this.textContent='Copied!';">
+        Copy Link
+      </button>
+    </div>
+    <p class="share-note">No account needed. Just forward the link.</p>
   </div>
 </div>
 
