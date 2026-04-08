@@ -901,9 +901,6 @@ ml('account', '2252646');
     animation: hero-enter 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
   }
 
-  /* ── MOBILE CTA PILL (hidden on desktop) ── */
-  .mobile-cta-pill { display: none; }
-
   /* ── SWIPE HINT (hidden on desktop) ── */
   .swipe-hint { display: none; }
 
@@ -911,62 +908,82 @@ ml('account', '2252646');
   @media (max-width: 640px) {
     /* Scroll snap container */
     html {
-      scroll-snap-type: y mandatory;
+      scroll-snap-type: y proximity;
       overflow-y: scroll;
       -webkit-overflow-scrolling: touch;
     }
 
-    /* Snap panels */
-    .snap-section {
-      scroll-snap-align: start;
-      min-height: 100vh;
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+    /* Hide desktop nav — use compact mobile nav */
+    nav {
+      padding: 4px 12px;
+      height: 56px;
+      background: rgba(245,244,239,0.92);
+    }
+    .nav-name { font-size: 14px; }
+    .nav-logo { height: 44px; }
+    .nav-cta { font-size: 11px; padding: 6px 14px; }
+
+    /* ── WATERMARK — ensure it shows through ── */
+    .bg-watermark {
+      height: 65vh;
+      z-index: 0;
+    }
+    /* Make section backgrounds semi-transparent so watermark bleeds through */
+    .grey-section {
+      background: rgba(229,228,222,0.85);
+    }
+    .trail-preview-section {
+      background: rgba(234,233,227,0.85);
+    }
+    .about-section {
+      background: rgba(229,228,222,0.85);
     }
 
-    /* Hide desktop nav on mobile */
-    nav { display: none; }
-
-    /* ── HERO (Panel 1) ── */
+    /* ── HERO ── */
     .hero {
       scroll-snap-align: start;
       min-height: 100dvh;
-      padding: 60px 24px 40px;
+      padding: 70px 20px 40px;
     }
 
-    /* Pull form out of hero flow on mobile */
+    /* Form stays in hero but more compact */
     .hero .form-section {
-      display: none;
+      padding: 24px 18px;
+      margin-top: 24px;
+      max-width: 100%;
+      border-top-width: 2px;
+      box-shadow: 0 8px 32px rgba(2,136,209,0.12), 0 2px 8px rgba(0,0,0,0.06);
     }
+    .form-headline { font-size: 22px; }
+    .form-sub { font-size: 13px; margin-bottom: 16px; }
 
-    /* ── FORM PANEL (Panel 2) ── */
-    .mobile-form-panel {
-      display: none;
-    }
-    .mobile-form-panel {
-      display: flex !important;
-      scroll-snap-align: start;
-      min-height: 100dvh;
+    /* ── SWIPE HINT ── */
+    .swipe-hint {
+      display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 40px 24px;
-      background: var(--black);
-      position: relative;
-      z-index: 1;
+      gap: 6px;
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--muted2);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: hint-bounce 2s ease-in-out infinite;
     }
-    .mobile-form-panel .form-section {
-      display: block;
-      max-width: 100%;
-      width: 100%;
-      animation: none;
+    .swipe-hint svg {
+      width: 16px;
+      height: 16px;
+    }
+    @keyframes hint-bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
     }
 
-    /* ── WHAT'S INSIDE (Panel 3) ── */
+    /* ── CONTENT SECTIONS — snap + center ── */
     .grey-section {
       scroll-snap-align: start;
       min-height: 100dvh;
@@ -985,7 +1002,6 @@ ml('account', '2252646');
       padding: 20px;
     }
 
-    /* ── TRAIL PREVIEWS (Panel 4) ── */
     .trail-preview-section {
       scroll-snap-align: start;
       min-height: 100dvh;
@@ -1000,7 +1016,6 @@ ml('account', '2252646');
     .trail-card-header { flex-direction: column; gap: 8px; }
     .trail-num { font-size: 32px; }
 
-    /* ── ABOUT (Panel 5) ── */
     .about-section {
       scroll-snap-align: start;
       min-height: 100dvh;
@@ -1012,7 +1027,7 @@ ml('account', '2252646');
     .about-card { padding: 28px 20px; }
     .kid-tag { min-width: calc(50% - 5px); }
 
-    /* ── FINAL CTA + FOOTER (Panel 6) ── */
+    /* ── FINAL CTA + FOOTER (Panel) ── */
     .mobile-final-panel {
       scroll-snap-align: start;
       min-height: 100dvh;
@@ -1035,75 +1050,56 @@ ml('account', '2252646');
       width: 100%;
     }
 
-    /* ── FLOATING CTA PILL ── */
-    .mobile-cta-pill {
-      display: flex;
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 90;
-      background: var(--orange);
-      color: #fff;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 14px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 12px 28px;
-      border-radius: 100px;
-      box-shadow: 0 4px 20px rgba(2,136,209,0.4), 0 2px 0 0 var(--orangeD);
-      transition: opacity 0.3s, transform 0.3s;
-      animation: pill-pulse 3s ease-in-out infinite;
-    }
-    .mobile-cta-pill.hidden {
-      opacity: 0;
-      pointer-events: none;
-      transform: translateX(-50%) translateY(20px);
-    }
-    @keyframes pill-pulse {
-      0%, 100% { box-shadow: 0 4px 20px rgba(2,136,209,0.4), 0 2px 0 0 var(--orangeD); }
-      50% { box-shadow: 0 4px 28px rgba(2,136,209,0.6), 0 2px 0 0 var(--orangeD); }
-    }
-
-    /* ── SWIPE HINT ── */
-    .swipe-hint {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      position: absolute;
-      bottom: 32px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: var(--muted2);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      animation: hint-bounce 2s ease-in-out infinite;
-    }
-    .swipe-hint svg {
-      width: 20px;
-      height: 20px;
-    }
-    @keyframes hint-bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(8px); }
-    }
-
     /* Hide desktop-only final CTA/footer */
     .desktop-final {
       display: none !important;
     }
+
+    /* ── MOBILE ANIMATIONS ── */
+    /* Parallax-like slide on hero sub text */
+    .hero-sub {
+      animation: hero-enter 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+    }
+    .hero-eyebrow {
+      animation: hero-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    /* Stagger callout cards more dramatically on mobile */
+    .callout-card.reveal { transform: translateY(48px) scale(0.95); }
+    .callout-card.reveal.visible { transform: translateY(0) scale(1); }
+    .reveal-delay-1 { transition-delay: 0.05s; }
+    .reveal-delay-2 { transition-delay: 0.15s; }
+    .reveal-delay-3 { transition-delay: 0.25s; }
+    .reveal-delay-4 { transition-delay: 0.35s; }
+
+    /* Trail cards slide in from sides on mobile */
+    .trail-card.reveal { transform: translateX(-30px); opacity: 0; }
+    .trail-card.reveal.visible { transform: translateX(0); opacity: 1; }
+    .trail-card.reveal.reveal-delay-2 { transform: translateX(30px); }
+    .trail-card.reveal.reveal-delay-2.visible { transform: translateX(0); }
+
+    /* About card scale up */
+    .about-card.reveal { transform: scale(0.9); }
+    .about-card.reveal.visible { transform: scale(1); }
+
+    /* Kid tags cascade */
+    .kid-tag:nth-child(1) { animation: kid-pop 0.4s ease-out 0.1s both; }
+    .kid-tag:nth-child(2) { animation: kid-pop 0.4s ease-out 0.2s both; }
+    .kid-tag:nth-child(3) { animation: kid-pop 0.4s ease-out 0.3s both; }
+    .kid-tag:nth-child(4) { animation: kid-pop 0.4s ease-out 0.4s both; }
+    @keyframes kid-pop {
+      from { opacity: 0; transform: translateY(12px) scale(0.9); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* More particles on mobile */
+    .particle { animation-duration: 5s; }
   }
 
   /* Desktop: hide mobile-only elements */
   @media (min-width: 641px) {
     .mobile-form-panel { display: none !important; }
     .mobile-final-panel { display: none !important; }
-    .mobile-cta-pill { display: none !important; }
     .swipe-hint { display: none !important; }
   }
 </style>
@@ -1156,16 +1152,6 @@ ml('account', '2252646');
     </div>
   </div>
 </section>
-
-<!-- ── MOBILE FORM PANEL (visible only on mobile) ── -->
-<div class="mobile-form-panel">
-  <div class="form-section" id="get-guide-mobile">
-    <div class="form-headline">Get the Free Trail Guide</div>
-    <div class="form-sub">Instant download — sent to your inbox right away.</div>
-    <div class="ml-embedded" data-form="YvdLSA"></div>
-    <p class="form-note">Free forever. No spam. Unsubscribe anytime.</p>
-  </div>
-</div>
 
 <!-- ── WHAT'S INSIDE (grey background) ── -->
 <div class="grey-section">
@@ -1411,7 +1397,7 @@ ml('account', '2252646');
     </div>
     <h2 style="font-size: 40px; margin-bottom: 16px;">Get the <span class="orange">Free Guide</span></h2>
     <p style="color: var(--muted); font-size: 16px; margin-bottom: 28px;">10 trails. Meltdown ratings. Gear list. Sent to your inbox instantly.</p>
-    <a href="#get-guide-mobile" class="btn-orange">Send Me the Guide →</a>
+    <a href="#get-guide" class="btn-orange">Send Me the Guide →</a>
     <p style="font-size: 12px; color: var(--muted2); margin-top: 16px;">No spam. Free forever. Unsubscribe anytime.</p>
   </section>
   <footer>
@@ -1423,9 +1409,6 @@ ml('account', '2252646');
     <p class="footer-copy">Made in Anchorage, AK by a dad of four who believes the best parenting happens outside.</p>
   </footer>
 </div>
-
-<!-- Mobile floating CTA pill -->
-<a href="#get-guide-mobile" class="mobile-cta-pill" id="mobilePill">Get the Guide ↓</a>
 
 <script>
 // Scroll progress bar
@@ -1466,17 +1449,6 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     p.style.width = p.style.height = (2 + Math.random() * 4) + 'px';
     container.appendChild(p);
   }
-})();
-
-// Mobile CTA pill — hide when form panel is visible
-(function() {
-  const pill = document.getElementById('mobilePill');
-  const formPanel = document.querySelector('.mobile-form-panel');
-  if (!pill || !formPanel) return;
-  const pillObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => pill.classList.toggle('hidden', e.isIntersecting));
-  }, { threshold: 0.3 });
-  pillObserver.observe(formPanel);
 })();
 
 // Meltdown bar animation
