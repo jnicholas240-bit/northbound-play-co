@@ -1,0 +1,2372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alaska Kid Trails — Northbound Play Co</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Barlow+Condensed:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:    #F5F4EF;
+    --dark:     #EAE9E3;
+    --card:     #FFFFFF;
+    --card2:    #F0F0EB;
+    --border:   #C8D8CA;
+    --orange:   #0288D1;
+    --orange2:  #0299E0;
+    --orangeD:  #01579B;
+    --white:    #1B2E1D;
+    --muted:    #5A6B5C;
+    --muted2:   #8A9B8C;
+    /* Semantic status — do not change */
+    --green:    #22c55e;
+    --yellow:   #eab308;
+    --red:      #ef4444;
+    /* Brand-specific */
+    --brand-green: #2E7D32;
+    --forest:    #1B5E20;
+    --amber:     #F9A825;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--black);
+    color: var(--white);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  h1, h2, h3, h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+
+  /* ── UTILITY ── */
+  .orange { color: var(--orange); }
+  .muted  { color: var(--muted); }
+  .tag {
+    display: inline-block;
+    background: var(--card2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 4px;
+  }
+  .tag.orange-tag {
+    background: rgba(2,136,209,0.12);
+    border-color: rgba(2,136,209,0.3);
+    color: var(--orange2);
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% -10%, rgba(46,125,50,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(2,136,209,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .cover-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(46,125,50,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(46,125,50,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+
+  .brand-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .brand-mark {
+    width: 52px;
+    height: 52px;
+    background: var(--brand-green);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 4px;
+  }
+
+  .brand-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .cover-eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .cover h1 {
+    font-size: clamp(56px, 10vw, 112px);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 0.92;
+    position: relative;
+    margin-bottom: 12px;
+    text-shadow: 0 3px 0 rgba(0,0,0,0.08), 0 6px 20px rgba(0,0,0,0.06);
+  }
+
+  .cover h1 .outline {
+    -webkit-text-stroke: 2px var(--brand-green);
+    color: transparent;
+  }
+
+  .cover-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(20px, 4vw, 32px);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 32px;
+    position: relative;
+  }
+
+  .cover-desc {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 auto 40px;
+    position: relative;
+    font-weight: 400;
+  }
+
+  .cover-desc strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  .cover-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(249,168,37,0.15);
+    border: 1px solid rgba(249,168,37,0.4);
+    border-radius: 100px;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #B8750A;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    position: relative;
+    margin-bottom: 56px;
+  }
+
+  .cover-testers {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .tester-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 16px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.09), inset 0 1px 0 rgba(255,255,255,0.8);
+  }
+
+  .tester-avatar {
+    width: 32px;
+    height: 32px;
+    background: var(--brand-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .tester-info { text-align: left; }
+  .tester-info .name { font-weight: 700; font-size: 14px; }
+  .tester-info .role { font-size: 11px; color: var(--muted); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted2);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── INTRO ── */
+  .intro {
+    padding: 80px 0 64px;
+  }
+
+  .intro-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .intro-eyebrow span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+
+  .intro-eyebrow .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--amber), transparent);
+    max-width: 80px;
+  }
+
+  .intro h2 {
+    font-size: clamp(36px, 6vw, 60px);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .intro-lead {
+    font-size: 18px;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 20px;
+  }
+
+  .intro-lead strong { color: var(--white); font-weight: 600; }
+
+  .intro-body {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .what-inside {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--amber);
+    border-radius: 16px;
+    padding: 28px;
+    margin: 40px 0;
+    box-shadow: 0 4px 24px rgba(46,125,50,0.1), 0 2px 6px rgba(0,0,0,0.05);
+  }
+
+  .what-inside h3 {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 20px;
+  }
+
+  .inside-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .inside-list li {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .inside-list li::before {
+    content: '→';
+    color: var(--amber);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--amber);
+    border-radius: 16px;
+    padding: 32px;
+    margin: 64px 0;
+    box-shadow: 0 6px 32px rgba(249,168,37,0.12), 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .checklist-block h2 {
+    font-size: 28px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .checklist-block .sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 28px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .checklist {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .check-box {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .rule-box {
+    background: rgba(46,125,50,0.08);
+    border: 1px solid rgba(46,125,50,0.25);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--brand-green);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  /* ── TRAIL COUNTER ── */
+  .trails-header {
+    padding: 56px 0 32px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .trails-header .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 12px;
+  }
+
+  .trails-header h2 {
+    font-size: clamp(40px, 7vw, 72px);
+    text-transform: uppercase;
+  }
+
+  /* ── TRAIL CARD ── */
+  .trail-card {
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--brand-green);
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 0 auto 48px;
+    max-width: 780px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 6px 32px rgba(46,125,50,0.14), 0 2px 8px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .trail-card:hover {
+    box-shadow: 0 16px 52px rgba(46,125,50,0.2), 0 4px 12px rgba(0,0,0,0.09);
+    transform: translateY(-4px);
+  }
+
+  .trail-card-header {
+    background: var(--card);
+    padding: 28px 32px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .trail-number {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 72px;
+    color: var(--brand-green);
+    line-height: 1;
+    letter-spacing: -2px;
+    flex-shrink: 0;
+    opacity: 0.9;
+    text-shadow: 0 3px 0 rgba(27,94,32,0.3), 0 6px 16px rgba(27,94,32,0.15);
+  }
+
+  .trail-header-text { flex: 1; }
+
+  .trail-header-text .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .trail-header-text h2 {
+    font-size: clamp(28px, 5vw, 44px);
+    text-transform: uppercase;
+    line-height: 1.0;
+    margin-bottom: 10px;
+  }
+
+  .trail-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .badge-green  { background: rgba(34,197,94,0.12); color: #4ade80; border: 1px solid rgba(34,197,94,0.25); }
+  .badge-yellow { background: rgba(234,179,8,0.12); color: #facc15; border: 1px solid rgba(234,179,8,0.25); }
+  .badge-red    { background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
+  .badge-grey   { background: var(--card2); color: var(--muted); border: 1px solid var(--border); }
+  .badge-orange { background: rgba(2,136,209,0.12); color: var(--orange2); border: 1px solid rgba(2,136,209,0.3); }
+
+  /* ── TRAIL STATS ── */
+  .trail-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat-item {
+    padding: 20px 24px;
+    border-right: 1px solid var(--border);
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted2);
+    margin-bottom: 4px;
+  }
+
+  .stat-value {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .stat-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* ── TRAIL BODY ── */
+  .trail-body {
+    padding: 28px 32px;
+  }
+
+  .trail-section {
+    margin-bottom: 28px;
+  }
+
+  .trail-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .trail-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .trail-section p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  .trail-section p strong { color: var(--white); font-weight: 600; }
+
+  .trail-section p em {
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ── HIGHLIGHTS ROW ── */
+  .highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .highlight-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  .highlight-item .hl-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted2);
+    margin-bottom: 3px;
+  }
+
+  .highlight-item .hl-value {
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* ── MELTDOWN RATING ── */
+  .meltdown-row {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.8);
+  }
+
+  .meltdown-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .meltdown-dot.green  { background: var(--green); box-shadow: 0 0 8px rgba(34,197,94,0.5); }
+  .meltdown-dot.yellow { background: var(--yellow); box-shadow: 0 0 8px rgba(234,179,8,0.5); }
+  .meltdown-dot.red    { background: var(--red); box-shadow: 0 0 8px rgba(239,68,68,0.5); }
+
+  .meltdown-text .level {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+
+  .meltdown-text .level.green  { color: #4ade80; }
+  .meltdown-text .level.yellow { color: #facc15; }
+  .meltdown-text .level.red    { color: #f87171; }
+
+  .meltdown-text .note {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ── GEAR ROW ── */
+  .gear-list {
+    list-style: none;
+    display: grid;
+    gap: 6px;
+  }
+
+  .gear-list li {
+    font-size: 14px;
+    color: var(--muted);
+    display: flex;
+    gap: 8px;
+  }
+
+  .gear-list li::before {
+    content: '—';
+    color: var(--muted2);
+    flex-shrink: 0;
+  }
+
+  /* ── VERSE ── */
+  .verse-block {
+    border-top: 1px solid var(--border);
+    padding: 20px 32px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .verse-bar {
+    width: 3px;
+    background: var(--amber);
+    border-radius: 2px;
+    align-self: stretch;
+    flex-shrink: 0;
+    min-height: 40px;
+  }
+
+  .verse-text {
+    font-style: italic;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .verse-ref {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted2);
+    margin-top: 4px;
+    font-style: normal;
+  }
+
+  /* ── GEAR CHAPTER ── */
+  .chapter {
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 64px 24px;
+    margin: 48px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .chapter-inner {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .chapter h2 {
+    font-size: clamp(36px, 6vw, 60px);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .chapter .sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+
+  .gear-blocks {
+    display: grid;
+    gap: 16px;
+  }
+
+  .gear-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--orange);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 3px 16px rgba(2,136,209,0.1), 0 1px 4px rgba(0,0,0,0.05);
+  }
+
+  .gear-block h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .gear-block h3 .g-icon {
+    width: 28px;
+    height: 28px;
+    background: rgba(2,136,209,0.12);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .gear-block p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── WILDLIFE ── */
+  .wildlife-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .wildlife-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+  }
+
+  .wildlife-card .animal {
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+
+  .wildlife-card h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .wildlife-card p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── CLOSING ── */
+  .closing {
+    padding: 80px 24px;
+    max-width: 780px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .closing h2 {
+    font-size: clamp(40px, 7vw, 72px);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .closing-body {
+    font-size: 17px;
+    color: var(--muted);
+    line-height: 1.85;
+    margin-bottom: 20px;
+  }
+
+  .closing-body strong { color: var(--white); font-weight: 600; }
+
+  .closing-body em {
+    color: var(--orange2);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .pre-hike-list {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--amber);
+    border-radius: 16px;
+    padding: 28px;
+    margin: 40px 0;
+    box-shadow: 0 4px 24px rgba(46,125,50,0.1), 0 2px 6px rgba(0,0,0,0.05);
+  }
+
+  .pre-hike-list h3 {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 18px;
+  }
+
+  .pre-hike-list ul {
+    list-style: none;
+    display: grid;
+    gap: 12px;
+  }
+
+  .pre-hike-list li {
+    display: flex;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--muted);
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pre-hike-list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .pre-hike-list li strong { color: var(--white); }
+
+  .pre-hike-list li::before {
+    content: '→';
+    color: var(--amber);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: #1B5E20;
+    border-top: none;
+    padding: 48px 24px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .footer-brand .mark {
+    width: 32px;
+    height: 32px;
+    background: #2E7D32;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .footer-brand .name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #F5F4EF;
+  }
+
+  .footer p {
+    font-size: 13px;
+    color: rgba(245,244,239,0.65);
+    max-width: 400px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .footer .final-verse {
+    font-size: 14px;
+    font-style: italic;
+    color: rgba(245,244,239,0.7);
+    max-width: 480px;
+    margin: 24px auto 0;
+    line-height: 1.7;
+    border-top: 1px solid rgba(245,244,239,0.2);
+    padding-top: 24px;
+  }
+
+  /* ── WATERMARK ── */
+  .bg-watermark {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 92vh;
+    z-index: 50;
+    pointer-events: none;
+    opacity: 0.08;
+    mix-blend-mode: multiply;
+    user-select: none;
+  }
+  .bg-watermark img {
+    height: 100%;
+    width: auto;
+    display: block;
+  }
+  @media (max-width: 640px) {
+    .bg-watermark { height: 65vh; }
+  }
+
+  /* ── TRAIL WRAPPER (sits above watermark) ── */
+  .trail-wrapper {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .trail-stats { grid-template-columns: repeat(2, 1fr); }
+    .trail-stats .stat-item:nth-child(2) { border-right: none; }
+    .highlights { grid-template-columns: 1fr; }
+    .wildlife-grid { grid-template-columns: 1fr 1fr; }
+    .inside-list { grid-template-columns: 1fr; }
+    .trail-card-header { flex-direction: column; gap: 8px; }
+    .trail-number { font-size: 48px; }
+    .trail-body { padding: 20px; }
+    .verse-block { padding: 18px 20px; }
+    .trail-card-header { padding: 20px; }
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; color: black; }
+    .cover { min-height: auto; padding: 40px; }
+    .trail-card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-watermark" aria-hidden="true">
+  <img src="northbound-logo.png?v=3" alt="">
+</div>
+
+<!-- ══════════════════════════════════════
+     COVER
+══════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-grid"></div>
+
+  <div class="brand-logo">
+    <div class="brand-mark">🧭</div>
+    <div class="brand-name">Northbound Play Co</div>
+  </div>
+
+  <div class="cover-eyebrow">Anchorage, Alaska · Field Guide</div>
+
+  <h1>
+    Alaska<br>
+    <span class="outline">Kid</span><br>
+    Trails
+  </h1>
+
+  <div class="cover-sub">Safe · Fun · No Drama</div>
+
+  <p class="cover-desc">
+    <strong>10 trails. Honest ratings. Real talk.</strong><br>
+    A dad's field guide to hiking Anchorage with little humans — tested in the mud, the rain, and the chaos.
+  </p>
+
+  <div class="cover-badge">
+    ✦ Free Guide from Northbound Play Co
+  </div>
+
+  <div class="cover-testers">
+    <div class="tester-chip">
+      <div class="tester-avatar">👧</div>
+      <div class="tester-info">
+        <div class="name">William, 9</div>
+        <div class="role">Chief Trail Evaluator</div>
+      </div>
+    </div>
+    <div class="tester-chip">
+      <div class="tester-avatar">👦</div>
+      <div class="tester-info">
+        <div class="name">Jeremiah, 4</div>
+        <div class="role">Chaos Correspondent</div>
+      </div>
+    </div>
+    <div class="tester-chip">
+      <div class="tester-avatar">🧔</div>
+      <div class="tester-info">
+        <div class="name">Jeff</div>
+        <div class="role">Dad &amp; Author</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">↓ scroll</div>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════
+     INTRO
+══════════════════════════════════════ -->
+<div class="section">
+  <div class="intro">
+    <div class="intro-eyebrow">
+      <span>Welcome, Fellow Hiking Dad</span>
+      <div class="line"></div>
+    </div>
+
+    <h2>Let's Be Real<br>For a Second</h2>
+
+    <p class="intro-lead">
+      You didn't move to Alaska — or stay in Alaska — so your kids could spend Saturday watching YouTube in the living room. You're here because of <strong>the mountains, the moose, the trails that make the Lower 48 look like a golf course.</strong>
+    </p>
+
+    <p class="intro-body">
+      But hiking with a 7-year-old and a 4-year-old? That's a different sport than hiking solo. The terrain is the same. The experience is... not.
+    </p>
+
+    <p class="intro-body">
+      I'm Jeff. My son William is 9 and he will out-hike you on a good day. My son Jeremiah is 4 and he will sit down in the mud exactly one mile from the trailhead and announce that his legs <em>"stopped working."</em> Both of these things have happened. Multiple times.
+    </p>
+
+    <p class="intro-body">
+      This guide exists because I made every mistake so you don't have to.
+    </p>
+
+    <div class="what-inside">
+      <h3>What's Inside</h3>
+      <ul class="inside-list">
+        <li>10 Anchorage-area trails that won't break small humans</li>
+        <li>Honest meltdown risk ratings (green / yellow / red)</li>
+        <li>Real talk on when to bail with zero guilt</li>
+        <li>Wildlife tips — prepared, not paranoid</li>
+        <li>Snack strategy for every trail type</li>
+        <li>One Bible verse per trail, because why not</li>
+      </ul>
+    </div>
+
+    <p class="intro-body">
+      These trails are tested. Some were triumphs. A few were disasters that are now funny stories. All of them are worth doing with your kids. <strong>Let's go.</strong>
+    </p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════
+     CHECKLIST
+══════════════════════════════════════ -->
+<div class="section">
+  <div class="checklist-block">
+    <h2>Before You Hit Any Trail</h2>
+    <div class="sub">The Non-Negotiable Dad Checklist</div>
+    <ul class="checklist">
+      <li><div class="check-box"></div> Extra snacks — double what you think you need</li>
+      <li><div class="check-box"></div> Bear spray on your hip, not buried in your pack</li>
+      <li><div class="check-box"></div> Layers for every human, including the ones who "don't need a jacket"</li>
+      <li><div class="check-box"></div> Water — 1 liter per person minimum, more for big miles</li>
+      <li><div class="check-box"></div> Phone with Anchorage trails downloaded offline (AllTrails or Gaia)</li>
+      <li><div class="check-box"></div> First aid kit with blister bandages and moleskin</li>
+      <li><div class="check-box"></div> Headlamp — Alaska trails can fool you on timing</li>
+      <li><div class="check-box"></div> Sunscreen — yes, even when it's cloudy</li>
+      <li><div class="check-box"></div> Hard stop time set BEFORE you leave the trailhead</li>
+    </ul>
+    <div class="rule-box">
+      ⚡ Most Important Rule: Tell someone where you're going and when you'll be back. Every time. No exceptions. This is not dramatic — this is just smart.
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TRAILS HEADER
+══════════════════════════════════════ -->
+<div class="trails-header">
+  <div class="label">Field Tested · Anchorage, AK</div>
+  <h2>The 10 Trails</h2>
+</div>
+
+<!-- ══════════════════════════════════════
+     TRAIL 1 — EARTHQUAKE PARK
+══════════════════════════════════════ -->
+<div class="trail-wrapper" style="margin-left:auto;margin-right:auto;max-width:780px;margin-bottom:48px;padding:0 24px;">
+<div class="trail-card" style="margin-left:0;margin-right:0;max-width:none;">
+  <div class="trail-card-header">
+    <div class="trail-number">01</div>
+    <div class="trail-header-text">
+      <div class="eyebrow">West Anchorage · Coastal</div>
+      <h2>Earthquake Park Loop</h2>
+      <div class="trail-badges">
+        <span class="badge badge-green">🟢 Low Meltdown</span>
+        <span class="badge badge-grey">Ages 2+</span>
+        <span class="badge badge-grey">Stroller OK</span>
+        <span class="badge badge-orange">Free Parking</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="trail-stats">
+    <div class="stat-item">
+      <div class="stat-label">Distance</div>
+      <div class="stat-value">1.5 mi</div>
+      <div class="stat-sub">Round trip loop</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Elevation</div>
+      <div class="stat-value">~40 ft</div>
+      <div class="stat-sub">Basically flat</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Time w/ Kids</div>
+      <div class="stat-value">45–75 min</div>
+      <div class="stat-sub">Leisurely pace</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Parking</div>
+      <div class="stat-value">Free</div>
+      <div class="stat-sub">Lot on W Northern Lights</div>
+    </div>
+  </div>
+
+  <div class="trail-body">
+    <div class="trail-section">
+      <div class="trail-section-label">Dad's Honest Take</div>
+      <p>This is your <strong>starter trail</strong>. Flat, forgiving, historically interesting — the park sits on land that dropped 11 feet during the 1964 Good Friday Earthquake, and the terrain still shows it. Kids don't care about the geology. They care that there's a cool boardwalk section, views of Cook Inlet, and moose in the scrubby trees. All three deliver.<br><br>Jeremiah made it the whole way without being carried. I'm still processing that milestone. Sneakers are fine on a dry day — mud boots in the car just in case, because Alaska.<br><br><strong>Best for:</strong> First hikes of the season, ages 2+, afternoons when you have 90 minutes and low expectations.</p>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Trail Highlights</div>
+      <div class="highlights">
+        <div class="highlight-item">
+          <div class="hl-label">Wildlife Watch</div>
+          <div class="hl-value">Moose in the willow/alder scrub, eagles overhead, inlet birds</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Kid Magnet</div>
+          <div class="hl-value">The earthquake-fractured ground — uneven terrain = natural obstacle course</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Photo Op</div>
+          <div class="hl-value">Cook Inlet lookout point with Denali visible on clear days</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Bail Point</div>
+          <div class="hl-value">Loop has easy road access at multiple spots — exit anytime, no guilt</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Snack Strategy</div>
+      <p>Snack at the Inlet overlook. It's the obvious stop and the kids will remember the view. Do not negotiate snacks before the overlook — you'll never get them moving again.</p>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Meltdown Risk</div>
+      <div class="meltdown-row">
+        <div class="meltdown-dot green"></div>
+        <div class="meltdown-text">
+          <div class="level green">LOW</div>
+          <div class="note">Enough interesting terrain and wildlife windows to keep small people distracted. Unless someone drops a snack in the ditch. Then all bets are off.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Gear Notes</div>
+      <ul class="gear-list">
+        <li>Gravel and packed dirt surface — regular sneakers on dry days, mud boots if recent rain</li>
+        <li>Stroller accessible on the main path loop</li>
+        <li>Dogs welcome on leash</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="verse-block">
+    <div class="verse-bar"></div>
+    <div>
+      <div class="verse-text">"I lift up my eyes to the mountains — where does my help come from? My help comes from the Lord, the Maker of heaven and earth."</div>
+      <div class="verse-ref">— Psalm 121:1–2</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TRAIL 2 — TONY KNOWLES COASTAL TRAIL
+══════════════════════════════════════ -->
+<div style="padding: 0 24px; margin-bottom: 48px;">
+<div class="trail-card">
+  <div class="trail-card-header">
+    <div class="trail-number">02</div>
+    <div class="trail-header-text">
+      <div class="eyebrow">Downtown to Kincaid · Coastal Paved</div>
+      <h2>Tony Knowles Coastal Trail</h2>
+      <div class="trail-badges">
+        <span class="badge badge-green">🟢 Very Low Meltdown</span>
+        <span class="badge badge-grey">Ages 2+</span>
+        <span class="badge badge-grey">Stroller OK</span>
+        <span class="badge badge-orange">Free Parking</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="trail-stats">
+    <div class="stat-item">
+      <div class="stat-label">Distance</div>
+      <div class="stat-value">2–4 mi</div>
+      <div class="stat-sub">Out-and-back (your call)</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Elevation</div>
+      <div class="stat-value">Minimal</div>
+      <div class="stat-sub">Essentially flat</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Time w/ Kids</div>
+      <div class="stat-value">1–2.5 hrs</div>
+      <div class="stat-sub">Depending on distance</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Parking</div>
+      <div class="stat-value">Free</div>
+      <div class="stat-sub">Westchester Lagoon lot</div>
+    </div>
+  </div>
+
+  <div class="trail-body">
+    <div class="trail-section">
+      <div class="trail-section-label">Dad's Honest Take</div>
+      <p>Flat. Paved. Stroller-friendly. <strong>Moose practically walk up and say hello.</strong><br><br>This is the trail I take when I need a sure thing. When I haven't slept enough, when Jeremiah's already in a mood before we leave the driveway, when I just need everyone to walk in fresh air and not cry. This is that trail.<br><br>Cook Inlet on one side, the Chugach Range behind you. You'll stop to take photos. Your kids will not stop. That's fine. Start at Westchester Lagoon — the parking is easy, there are ducks on the lagoon to keep toddlers busy for 20 minutes before you even start.<br><br><strong>Best for:</strong> Ages 2+, post-nap afternoon hikes, guests from Out of State who need their minds blown gently.</p>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Trail Highlights</div>
+      <div class="highlights">
+        <div class="highlight-item">
+          <div class="hl-label">Wildlife Watch</div>
+          <div class="hl-value">Moose common in morning/evening — 50+ ft minimum, more if a calf is present</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Kid Magnet</div>
+          <div class="hl-value">The inlet views. Jeremiah asked where the ocean "goes" — 20-minute conversation about tides.</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Photo Op</div>
+          <div class="hl-value">Any coastal point on a clear day — Denali visible in the distance when skies cooperate</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Bail Point</div>
+          <div class="hl-value">Anywhere — it's out-and-back. Your halfway point is wherever you decide it is.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Snack Strategy</div>
+      <p>The trail has enough natural pauses — overlooks, benches, moose-watching moments — that snacks feel organic. Pack something you can eat while walking. William once said this trail "doesn't feel like hiking." High praise from a 9-year-old.</p>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Meltdown Risk</div>
+      <div class="meltdown-row">
+        <div class="meltdown-dot green"></div>
+        <div class="meltdown-text">
+          <div class="level green">VERY LOW</div>
+          <div class="note">Flat terrain, constant visual interest, easy exit anytime. The "sure thing" trail.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Gear Notes</div>
+      <ul class="gear-list">
+        <li>Paved surface — sneakers, bikes welcome on same path, keep kids right</li>
+        <li>Binoculars make the inlet wildlife-watching much better</li>
+        <li>Wind off the inlet can be cold even on sunny days — layer up</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="verse-block">
+    <div class="verse-bar"></div>
+    <div>
+      <div class="verse-text">"The heavens declare the glory of God; the skies proclaim the work of his hands."</div>
+      <div class="verse-ref">— Psalm 19:1</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TRAIL 3 — CAMPBELL CREEK GREENBELT
+══════════════════════════════════════ -->
+<div style="padding: 0 24px; margin-bottom: 48px;">
+<div class="trail-card">
+  <div class="trail-card-header">
+    <div class="trail-number">03</div>
+    <div class="trail-header-text">
+      <div class="eyebrow">Midtown Anchorage · Creek Trail</div>
+      <h2>Campbell Creek Greenbelt</h2>
+      <div class="trail-badges">
+        <span class="badge badge-green">🟢 Low Meltdown</span>
+        <span class="badge badge-grey">Ages 3+</span>
+        <span class="badge badge-grey">Salmon Season ★</span>
+        <span class="badge badge-orange">Free Parking</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="trail-stats">
+    <div class="stat-item">
+      <div class="stat-label">Distance</div>
+      <div class="stat-value">2–4 mi</div>
+      <div class="stat-sub">Out-and-back (flexible)</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Elevation</div>
+      <div class="stat-value">Minimal</div>
+      <div class="stat-sub">Flat creek corridor</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Time w/ Kids</div>
+      <div class="stat-value">1–2 hrs</div>
+      <div class="stat-sub">More if salmon are running</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Parking</div>
+      <div class="stat-value">Free</div>
+      <div class="stat-sub">Multiple access points</div>
+    </div>
+  </div>
+
+  <div class="trail-body">
+    <div class="trail-section">
+      <div class="trail-section-label">Dad's Honest Take</div>
+      <p>Creek trails are <strong>cheat codes with kids.</strong> The sound of moving water is hypnotic. Kids will stop every 30 feet to throw rocks, look for fish, or just stand there listening. You will get fewer steps than expected. You will not mind.<br><br>This section of the greenbelt stays shaded, which is perfect on those rare hot Anchorage summer days. The trail is level enough that Jeremiah does it under his own steam almost every time. Almost.<br><br><strong>Best for:</strong> Ages 3+, hot summer days, nature exploration, when the goal is "be outside" more than "hike somewhere."</p>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Trail Highlights</div>
+      <div class="highlights">
+        <div class="highlight-item">
+          <div class="hl-label">Wildlife Watch</div>
+          <div class="hl-value">Salmon in the creek during run season — one of the coolest things you can show an Anchorage kid</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Kid Magnet</div>
+          <div class="hl-value">The creek itself. Budget 15 extra minutes per crossing or viewing spot. You won't regret it.</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Photo Op</div>
+          <div class="hl-value">Kids peering into the creek, salmon if you're lucky, fall colors in September</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Bail Point</div>
+          <div class="hl-value">Anywhere — flat, linear, completely forgiving</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Snack Strategy</div>
+      <p>Creek-side snack break is mandatory. Find a flat rock or a log near the water. Eat your snacks. Watch the water. <strong>This is the whole point.</strong></p>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Meltdown Risk</div>
+      <div class="meltdown-row">
+        <div class="meltdown-dot green"></div>
+        <div class="meltdown-text">
+          <div class="level green">LOW</div>
+          <div class="note">Unless someone falls in the creek. Then it's immediately red. Bring a dry change of clothes. You've been warned.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Gear Notes</div>
+      <ul class="gear-list">
+        <li>Waterproof boots or river sandals if you plan to let them wade</li>
+        <li>Keep kids back from bank edges — creek banks can be slippery</li>
+        <li>Salmon run timing varies; check ADF&amp;G for peak dates</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="verse-block">
+    <div class="verse-bar"></div>
+    <div>
+      <div class="verse-text">"He leads me beside quiet waters, he refreshes my soul."</div>
+      <div class="verse-ref">— Psalm 23:2–3</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TRAIL 4 — FLATTOP / GLEN ALPS
+══════════════════════════════════════ -->
+<div style="padding: 0 24px; margin-bottom: 48px;">
+<div class="trail-card">
+  <div class="trail-card-header">
+    <div class="trail-number">04</div>
+    <div class="trail-header-text">
+      <div class="eyebrow">Chugach State Park · Alpine</div>
+      <h2>Flattop Lower Approach</h2>
+      <div class="trail-badges">
+        <span class="badge badge-yellow">🟡 Medium Meltdown</span>
+        <span class="badge badge-grey">Ages 5+</span>
+        <span class="badge badge-grey">Best Views in Anchorage</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="trail-stats">
+    <div class="stat-item">
+      <div class="stat-label">Distance</div>
+      <div class="stat-value">1.5 mi</div>
+      <div class="stat-sub">To first viewpoint</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Elevation</div>
+      <div class="stat-value">550 ft</div>
+      <div class="stat-sub">To lower viewpoint</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Time w/ Kids</div>
+      <div class="stat-value">2–3 hrs</div>
+      <div class="stat-sub">Round trip to viewpoint</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Parking</div>
+      <div class="stat-value">$5/day</div>
+      <div class="stat-sub">Glen Alps lot or AK parks pass</div>
+    </div>
+  </div>
+
+  <div class="trail-body">
+    <div class="trail-section">
+      <div class="trail-section-label">Dad's Honest Take</div>
+      <p>This one asks a little more of your crew. Real elevation gain, rocky terrain, and Jeremiah needed carrying on the way back. But the payoff is enormous — at the first major viewpoint, you've got an <strong>unobstructed panorama of Anchorage, Cook Inlet, and on a clear day, the Alaska Range.</strong><br><br>William pumped his fist when he got there. Worth every complaint.<br><br>The key: set the <em>first viewpoint</em> as the goal, not the summit. With young kids, the lower viewpoint is the reward. Save the summit for when they're older and can negotiate their own snack supply.<br><br><strong>Best for:</strong> Ages 5+ to the viewpoint, confident walkers only below that, clear days for best effect.</p>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Trail Highlights</div>
+      <div class="highlights">
+        <div class="highlight-item">
+          <div class="hl-label">Wildlife Watch</div>
+          <div class="hl-value">Dall sheep frequently spotted on upper ridges — bring binoculars. Worth stopping for.</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Kid Magnet</div>
+          <div class="hl-value">Rocky scramble sections just before the viewpoint — kids love "real climbing"</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Photo Op</div>
+          <div class="hl-value">First viewpoint looking over Anchorage — frame-it-on-the-wall shot</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Bail Point</div>
+          <div class="hl-value">0.75 miles — if energy is low here, turn back with no guilt. Good call, not a failure.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Snack Strategy</div>
+      <p>Hold snacks until the viewpoint. This is your leverage. Use it. The view makes the snacks taste better anyway — that's just science.</p>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Meltdown Risk</div>
+      <div class="meltdown-row">
+        <div class="meltdown-dot yellow"></div>
+        <div class="meltdown-text">
+          <div class="level yellow">MEDIUM</div>
+          <div class="note">Elevation gain will find your crew's limits. Watch for the "quiet tired" — when they stop talking, they're about 10 minutes from done.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Gear Notes</div>
+      <ul class="gear-list">
+        <li>Actual hiking boots recommended — ankle support matters on rocky terrain</li>
+        <li>Trekking poles helpful for little ones on the descent</li>
+        <li>Noticeably colder and windier at the viewpoint — extra layer mandatory</li>
+        <li>Parking pass or $5 cash for the Glen Alps trailhead fee</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="verse-block">
+    <div class="verse-bar"></div>
+    <div>
+      <div class="verse-text">"For the mountains may depart and the hills be removed, but my steadfast love shall not depart from you."</div>
+      <div class="verse-ref">— Isaiah 54:10</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TRAIL 5 — KINCAID PARK
+══════════════════════════════════════ -->
+<div style="padding: 0 24px; margin-bottom: 48px;">
+<div class="trail-card">
+  <div class="trail-card-header">
+    <div class="trail-number">05</div>
+    <div class="trail-header-text">
+      <div class="eyebrow">West Anchorage · Forest Loop</div>
+      <h2>Kincaid Park Nordic Loop</h2>
+      <div class="trail-badges">
+        <span class="badge badge-green">🟢 Low Meltdown</span>
+        <span class="badge badge-grey">Ages 3+</span>
+        <span class="badge badge-grey">Great Fall Colors</span>
+        <span class="badge badge-orange">Free Parking</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="trail-stats">
+    <div class="stat-item">
+      <div class="stat-label">Distance</div>
+      <div class="stat-value">2.5–4 mi</div>
+      <div class="stat-sub">Loop (adjustable)</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Elevation</div>
+      <div class="stat-value">Rolling</div>
+      <div class="stat-sub">Under 200 ft total</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Time w/ Kids</div>
+      <div class="stat-value">1.5–2.5 hrs</div>
+      <div class="stat-sub">Plenty of side trips</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Parking</div>
+      <div class="stat-value">Free</div>
+      <div class="stat-sub">Main Kincaid chalet lot</div>
+    </div>
+  </div>
+
+  <div class="trail-body">
+    <div class="trail-section">
+      <div class="trail-section-label">Dad's Honest Take</div>
+      <p>Kincaid gets better the more you know it. The trail system is huge, but the forested loop section is the sweet spot — enough variety to stay interesting, enough canopy to feel like real wilderness, close enough to the parking lot that you're never truly committed.<br><br>Pro tip: start at the main chalet to get the meadow section early. <strong>Jeremiah calls meadows "the running part" and sprints every single time.</strong> If you can get your 4-year-old to sprint, you are winning the morning.<br><br><strong>Best for:</strong> Ages 3+, dogs (watch for moose), great fall color destination in September.</p>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Trail Highlights</div>
+      <div class="highlights">
+        <div class="highlight-item">
+          <div class="hl-label">Wildlife Watch</div>
+          <div class="hl-value">Moose very common — prime spruce habitat. Keep kids within arm's reach in dense sections.</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Kid Magnet</div>
+          <div class="hl-value">Open meadow sections — let them run. Burn the energy. You want that.</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Photo Op</div>
+          <div class="hl-value">Meadow-to-treeline shots at golden hour. One of the best light situations in Anchorage.</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Bail Point</div>
+          <div class="hl-value">Loop intersects multiple connector trails — shorten anytime the wheels come off</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Snack Strategy</div>
+      <p>The meadow is your snack destination. Pack it in, find a spot in the sun, sit down for 10 minutes. This is the move.</p>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Meltdown Risk</div>
+      <div class="meltdown-row">
+        <div class="meltdown-dot green"></div>
+        <div class="meltdown-text">
+          <div class="level green">LOW</div>
+          <div class="note">Forgiving terrain, loop format means constant "progress," and enough wow moments to hold small people's attention throughout.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Gear Notes</div>
+      <ul class="gear-list">
+        <li>Mud season makes this trail gnarly — plan accordingly in spring and fall</li>
+        <li>Popular with cyclists on wider paths — keep to the right</li>
+        <li>Bears spotted here occasionally — bear spray, make noise (kids handle this naturally)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="verse-block">
+    <div class="verse-bar"></div>
+    <div>
+      <div class="verse-text">"This is the day that the Lord has made; let us rejoice and be glad in it."</div>
+      <div class="verse-ref">— Psalm 118:24</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TRAIL 6 — POTTER MARSH BOARDWALK
+══════════════════════════════════════ -->
+<div style="padding: 0 24px; margin-bottom: 48px;">
+<div class="trail-card">
+  <div class="trail-card-header">
+    <div class="trail-number">06</div>
+    <div class="trail-header-text">
+      <div class="eyebrow">South Anchorage · Wildlife Boardwalk</div>
+      <h2>Potter Marsh Boardwalk</h2>
+      <div class="trail-badges">
+        <span class="badge badge-green">🟢 Very Low Meltdown</span>
+        <span class="badge badge-grey">All Ages</span>
+        <span class="badge badge-grey">Stroller OK</span>
+        <span class="badge badge-grey">Toddler Safe</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="trail-stats">
+    <div class="stat-item">
+      <div class="stat-label">Distance</div>
+      <div class="stat-value">1.5 mi</div>
+      <div class="stat-sub">Out-and-back boardwalk</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Elevation</div>
+      <div class="stat-value">None</div>
+      <div class="stat-sub">Completely flat</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Time w/ Kids</div>
+      <div class="stat-value">45–90 min</div>
+      <div class="stat-sub">Depends on wildlife action</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Parking</div>
+      <div class="stat-value">Free</div>
+      <div class="stat-sub">Off Seward Hwy, MP 117</div>
+    </div>
+  </div>
+
+  <div class="trail-body">
+    <div class="trail-section">
+      <div class="trail-section-label">Dad's Honest Take</div>
+      <p>This is not a hike. I'll be straight with you. It's a boardwalk through a bird marsh. But it is <strong>100% worth it</strong> as a family outing, especially if your kids have any interest in wildlife — or if you want to spark that interest.<br><br>The first time Jeremiah saw a beaver swimming right under the boardwalk, I thought he was going to implode with joy. William now knows the difference between a pintail and a mallard. This is entirely because of Potter Marsh.<br><br>Bring binoculars. Go slowly. Let the marsh come to you.<br><br><strong>Best for:</strong> All ages, wildlife lovers, spring migration (peak bird activity), when someone's not up for real hiking.</p>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Trail Highlights</div>
+      <div class="highlights">
+        <div class="highlight-item">
+          <div class="hl-label">Wildlife Watch</div>
+          <div class="hl-value">Arctic terns, ducks, geese, moose at marsh edges, salmon in channel during run season</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Kid Magnet</div>
+          <div class="hl-value">Anything moving in the water below the boardwalk. Hours of entertainment, zero effort from you.</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Photo Op</div>
+          <div class="hl-value">Birds in flight, kids with binoculars, mirror reflections in still morning water</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Bail Point</div>
+          <div class="hl-value">Turnaround anywhere — fully linear and flexible</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Snack Strategy</div>
+      <p>Eat before or after. <strong>No snacks on the boardwalk</strong> — you'll attract birds, which sounds fun until a tern decides your kid's granola bar is its territory. Don't invite that chaos.</p>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Meltdown Risk</div>
+      <div class="meltdown-row">
+        <div class="meltdown-dot green"></div>
+        <div class="meltdown-text">
+          <div class="level green">VERY LOW</div>
+          <div class="note">The wildlife does all the work. Your only job is to not rush anyone. A basic bird ID app makes this 10x more educational.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Gear Notes</div>
+      <ul class="gear-list">
+        <li>Binoculars are non-optional — borrow some if you don't own them</li>
+        <li>Best visited early morning or early evening for peak bird activity</li>
+        <li>Can be muddy at trailhead approach — boardwalk itself is elevated and dry</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="verse-block">
+    <div class="verse-bar"></div>
+    <div>
+      <div class="verse-text">"Look at the birds of the air; they do not sow or reap or store away in barns, and yet your heavenly Father feeds them. Are you not much more valuable than they?"</div>
+      <div class="verse-ref">— Matthew 6:26</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TRAIL 7 — SHIP CREEK
+══════════════════════════════════════ -->
+<div style="padding: 0 24px; margin-bottom: 48px;">
+<div class="trail-card">
+  <div class="trail-card-header">
+    <div class="trail-number">07</div>
+    <div class="trail-header-text">
+      <div class="eyebrow">Downtown Anchorage · Urban Nature</div>
+      <h2>Ship Creek Lower Trail</h2>
+      <div class="trail-badges">
+        <span class="badge badge-green">🟢 Low Meltdown</span>
+        <span class="badge badge-grey">Ages 3+</span>
+        <span class="badge badge-grey">Salmon Season ★</span>
+        <span class="badge badge-orange">Free Parking</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="trail-stats">
+    <div class="stat-item">
+      <div class="stat-label">Distance</div>
+      <div class="stat-value">2.0 mi</div>
+      <div class="stat-sub">Out-and-back</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Elevation</div>
+      <div class="stat-value">Minimal</div>
+      <div class="stat-sub">Mostly flat</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Time w/ Kids</div>
+      <div class="stat-value">1–1.5 hrs</div>
+      <div class="stat-sub">More during salmon season</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Parking</div>
+      <div class="stat-value">Free/Street</div>
+      <div class="stat-sub">Near downtown</div>
+    </div>
+  </div>
+
+  <div class="trail-body">
+    <div class="trail-section">
+      <div class="trail-section-label">Dad's Honest Take</div>
+      <p>Ship Creek has this wild feature where you're walking through Anchorage — you can literally see downtown — and suddenly there are <strong>king salmon the size of your torso pushing upstream</strong> in the water next to you. Alaska doesn't stop being wild just because the city is nearby.<br><br>This lower section is flat, accessible, and genuinely surprising. Bring the kids during salmon season and prepare for a lot of questions about where fish come from and where they're going. Good questions. Take the time to answer them.<br><br><strong>Best for:</strong> Ages 3+, salmon season priority (July–August for kings), urban nature experience.</p>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Trail Highlights</div>
+      <div class="highlights">
+        <div class="highlight-item">
+          <div class="hl-label">Wildlife Watch</div>
+          <div class="hl-value">Salmon (king/silver by season), eagles, possible bear activity near peak salmon — stay alert</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Kid Magnet</div>
+          <div class="hl-value">Watching fishermen pull salmon from the creek. The fish themselves in clear water. Works every time.</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Photo Op</div>
+          <div class="hl-value">Downtown Anchorage skyline framed by mountains with the creek in the foreground — unique shot</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Bail Point</div>
+          <div class="hl-value">Flat trail — turnaround anytime, no commitment required</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Snack Strategy</div>
+      <p>Post-hike snack in downtown Anchorage — this trail puts you close to food options. Plan for a reward meal. Kids respond well to <em>"if we finish the trail, we get pizza."</em> Use it strategically.</p>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Meltdown Risk</div>
+      <div class="meltdown-row">
+        <div class="meltdown-dot green"></div>
+        <div class="meltdown-text">
+          <div class="level green">LOW</div>
+          <div class="note">The salmon do the heavy lifting. If fish are running, kids will walk much farther than they realize because they're too distracted to notice they're hiking.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Gear Notes</div>
+      <ul class="gear-list">
+        <li>Fishing activity means hooks in the area — watch where little ones wander near the bank</li>
+        <li>Creek water is fast and cold — stay off the banks, keep small kids close</li>
+        <li>Bear activity increases significantly during salmon runs — bear spray, make noise</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="verse-block">
+    <div class="verse-bar"></div>
+    <div>
+      <div class="verse-text">"Come, follow me, and I will send you out to fish for people."</div>
+      <div class="verse-ref">— Matthew 4:19</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TRAIL 8 — POWERLINE PASS
+══════════════════════════════════════ -->
+<div style="padding: 0 24px; margin-bottom: 48px;">
+<div class="trail-card">
+  <div class="trail-card-header">
+    <div class="trail-number">08</div>
+    <div class="trail-header-text">
+      <div class="eyebrow">Chugach State Park · Valley Trail</div>
+      <h2>Powerline Pass Trail</h2>
+      <div class="trail-badges">
+        <span class="badge badge-yellow">🟡 Medium Meltdown</span>
+        <span class="badge badge-grey">Ages 5+</span>
+        <span class="badge badge-grey">Big Alaska Energy</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="trail-stats">
+    <div class="stat-item">
+      <div class="stat-label">Distance</div>
+      <div class="stat-value">4 mi</div>
+      <div class="stat-sub">Out-and-back to valley</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Elevation</div>
+      <div class="stat-value">800 ft</div>
+      <div class="stat-sub">To valley floor</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Time w/ Kids</div>
+      <div class="stat-value">2–3 hrs</div>
+      <div class="stat-sub">Round trip to turnaround</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Parking</div>
+      <div class="stat-value">$5/day</div>
+      <div class="stat-sub">Glen Alps lot</div>
+    </div>
+  </div>
+
+  <div class="trail-body">
+    <div class="trail-section">
+      <div class="trail-section-label">Dad's Honest Take</div>
+      <p>This is the trail that makes you feel like you're <strong>properly in Alaska.</strong> Once you drop into the valley section, the mountains close in on both sides and the scale hits you hard. It's big country. Kids feel it too — William went quiet for about five minutes when we rounded into the open valley, which is essentially a miracle.<br><br>The trail is wide and well-traveled. Elevation gain is gradual enough that you don't feel it until you check how far you've come. Set your turnaround at the valley floor for the best scenery-to-effort ratio with young kids.<br><br><strong>Best for:</strong> Ages 5+, kids who've logged trail miles already, clear weather days only — this one wants a good sky.</p>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Trail Highlights</div>
+      <div class="highlights">
+        <div class="highlight-item">
+          <div class="hl-label">Wildlife Watch</div>
+          <div class="hl-value">Dall sheep on ridgelines, ptarmigan, marmots in rocky sections — bring binoculars</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Kid Magnet</div>
+          <div class="hl-value">The wide-open valley floor — feels like a discovery, like you found somewhere secret</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Photo Op</div>
+          <div class="hl-value">Looking back toward Anchorage from inside the valley — city and wilderness simultaneously</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Bail Point</div>
+          <div class="hl-value">1.5 miles — the approach levels off here; decent turnaround if energy flags early</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Snack Strategy</div>
+      <p>Valley floor snack break. Find a boulder, sit down, eat your snacks, stare at the mountains. This is one of those moments you're going to remember <strong>when your kids are grown.</strong></p>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Meltdown Risk</div>
+      <div class="meltdown-row">
+        <div class="meltdown-dot yellow"></div>
+        <div class="meltdown-text">
+          <div class="level yellow">MEDIUM</div>
+          <div class="note">The approach has sustained uphill that will find small-person limits. Once you're in the valley, energy mysteriously returns. Push through the approach.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Gear Notes</div>
+      <ul class="gear-list">
+        <li>Wind can be significant in the valley — extra layer even on warm days</li>
+        <li>Trekking poles helpful, especially for the descent</li>
+        <li>Sun exposure is high in the open valley — sunscreen and sun hats mandatory</li>
+        <li>Leave No Trace — heavily visited trail, pack out everything</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="verse-block">
+    <div class="verse-bar"></div>
+    <div>
+      <div class="verse-text">"He gives strength to the weary and increases the power of the weak."</div>
+      <div class="verse-ref">— Isaiah 40:29</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TRAIL 9 — HILLSIDE PARK
+══════════════════════════════════════ -->
+<div style="padding: 0 24px; margin-bottom: 48px;">
+<div class="trail-card">
+  <div class="trail-card-header">
+    <div class="trail-number">09</div>
+    <div class="trail-header-text">
+      <div class="eyebrow">Hillside Anchorage · Forest Loop</div>
+      <h2>Hillside Park Trails</h2>
+      <div class="trail-badges">
+        <span class="badge badge-green">🟢 Low Meltdown</span>
+        <span class="badge badge-grey">Ages 3+</span>
+        <span class="badge badge-grey">Best Moose Spotting</span>
+        <span class="badge badge-orange">Free Parking</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="trail-stats">
+    <div class="stat-item">
+      <div class="stat-label">Distance</div>
+      <div class="stat-value">2.5 mi</div>
+      <div class="stat-sub">Loop (adjustable)</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Elevation</div>
+      <div class="stat-value">350 ft</div>
+      <div class="stat-sub">Rolling forest</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Time w/ Kids</div>
+      <div class="stat-value">1.5–2 hrs</div>
+      <div class="stat-sub">15 min from downtown</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Parking</div>
+      <div class="stat-value">Free</div>
+      <div class="stat-sub">Upper Huffman Rd area</div>
+    </div>
+  </div>
+
+  <div class="trail-body">
+    <div class="trail-section">
+      <div class="trail-section-label">Dad's Honest Take</div>
+      <p>Hillside is Anchorage's secret weapon. Close to the Hillside neighborhoods, well-maintained, and enough route options to adjust length on the fly based on how your crew is doing.<br><br>This is also <strong>one of the best moose-spotting trails in the city.</strong> We've seen moose on five of our last six visits. Jeremiah now calls this "the moose trail" and gets upset when we don't see one. Managing that expectation is on you.<br><br>The forested sections feel genuinely remote even though you're 15 minutes from downtown.<br><br><strong>Best for:</strong> Ages 3+, moose-spotting priority, fall foliage in September–October.</p>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Trail Highlights</div>
+      <div class="highlights">
+        <div class="highlight-item">
+          <div class="hl-label">Wildlife Watch</div>
+          <div class="hl-value">Moose in every clearing — check them all. Red squirrels and Steller's jays as bonus.</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Kid Magnet</div>
+          <div class="hl-value">Root-covered trail sections that feel like a natural obstacle course. Jeremiah "parkours" every root.</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Photo Op</div>
+          <div class="hl-value">Birch tree groves in fall color, moose in any season — the moose shot here is electric</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Bail Point</div>
+          <div class="hl-value">Multiple connector trails let you shorten the loop at several points — always an exit</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Snack Strategy</div>
+      <p>There's a flat clearing about halfway through. That's your snack spot. You'll know it when you see it.</p>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Meltdown Risk</div>
+      <div class="meltdown-row">
+        <div class="meltdown-dot green"></div>
+        <div class="meltdown-text">
+          <div class="level green">LOW</div>
+          <div class="note">Loop format helps — you're always "making progress" without backtracking, which matters to certain 7-year-olds who have opinions about efficiency.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Gear Notes</div>
+      <ul class="gear-list">
+        <li>Mud is a constant through much of the season — gaiters or rain boots a strong move</li>
+        <li>Moose encounters: stop, give space, detour wide. Do not approach. Ever.</li>
+        <li>Trail intersections can be confusing — download offline map before you go</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="verse-block">
+    <div class="verse-bar"></div>
+    <div>
+      <div class="verse-text">"Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight."</div>
+      <div class="verse-ref">— Proverbs 3:5–6</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     TRAIL 10 — BIRD RIDGE
+══════════════════════════════════════ -->
+<div style="padding: 0 24px; margin-bottom: 48px;">
+<div class="trail-card">
+  <div class="trail-card-header">
+    <div class="trail-number">10</div>
+    <div class="trail-header-text">
+      <div class="eyebrow">Turnagain Arm · Earn It Trail</div>
+      <h2>Bird Ridge Lower Trail</h2>
+      <div class="trail-badges">
+        <span class="badge badge-red">🔴 Medium-High Meltdown</span>
+        <span class="badge badge-grey">Ages 6+</span>
+        <span class="badge badge-grey">Clear Day Only</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="trail-stats">
+    <div class="stat-item">
+      <div class="stat-label">Distance</div>
+      <div class="stat-value">2.5 mi</div>
+      <div class="stat-sub">To first major viewpoint</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Elevation</div>
+      <div class="stat-value">1,500 ft</div>
+      <div class="stat-sub">Steeper than it sounds</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Time w/ Kids</div>
+      <div class="stat-value">2–3.5 hrs</div>
+      <div class="stat-sub">Round trip with breaks</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Parking</div>
+      <div class="stat-value">Free</div>
+      <div class="stat-sub">MP 102, Seward Hwy</div>
+    </div>
+  </div>
+
+  <div class="trail-body">
+    <div class="trail-section">
+      <div class="trail-section-label">Dad's Honest Take</div>
+      <p>Save this one for a clear day. Earn it. Because when the weather plays ball and you hit that first major viewpoint over Turnagain Arm, you will feel like you're standing at <strong>the edge of the world.</strong><br><br>Turnagain Arm is one of the most dramatic tidal estuaries on earth. From this viewpoint, you see the whole thing — the water, the mud flats, the mountains across, the bore tide if you time it right. William said "this looks fake." That's how you know it's good.<br><br>This trail has real elevation gain. It asks something of your crew. Brief them before you leave the car: <em>"This one asks more of us. We're going to do hard things today."</em> Kids respond to that if you say it straight.<br><br><strong>Best for:</strong> Ages 6+, experienced kid hikers, clear weather only, bore tide timing if possible.</p>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Trail Highlights</div>
+      <div class="highlights">
+        <div class="highlight-item">
+          <div class="hl-label">Wildlife Watch</div>
+          <div class="hl-value">Dall sheep above, beluga whales in the inlet (seasonal), eagles constantly, possible black bear</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Kid Magnet</div>
+          <div class="hl-value">The viewpoint itself — kids start asking what's over there and why the water looks different colors</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Photo Op</div>
+          <div class="hl-value">Viewpoint looking south over Turnagain Arm — get here, turn around, you'll know the shot immediately</div>
+        </div>
+        <div class="highlight-item">
+          <div class="hl-label">Bail Point</div>
+          <div class="hl-value">1.0 mile — secondary viewpoint already impressive. Call it the destination if needed, no shame.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Snack Strategy</div>
+      <p>Viewpoint snacks only. This is a sacred rule. You do not eat the viewpoint snacks before the viewpoint. <strong>These snacks are earned. They taste like victory and mountains and the right choice.</strong></p>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Meltdown Risk</div>
+      <div class="meltdown-row">
+        <div class="meltdown-dot red"></div>
+        <div class="meltdown-text">
+          <div class="level red">MEDIUM-HIGH</div>
+          <div class="note">The approach is steep enough to genuinely challenge small legs. But the reward is big enough to make it worth the push. This is a character-building trail. Own it.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trail-section">
+      <div class="trail-section-label">Gear Notes</div>
+      <ul class="gear-list">
+        <li>Do not attempt in poor visibility — the whole point is the view</li>
+        <li>Steep sections mean hiking boots, not sneakers</li>
+        <li>Wind at the viewpoint can be significant — mandatory extra layer</li>
+        <li>Check bore tide schedule online — timing your arrival with the tide is a bonus worth planning around</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="verse-block">
+    <div class="verse-bar"></div>
+    <div>
+      <div class="verse-text">"Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go."</div>
+      <div class="verse-ref">— Joshua 1:9</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     GEAR CHAPTER
+══════════════════════════════════════ -->
+<div class="chapter">
+  <div class="chapter-inner">
+    <h2>Gear That Actually Matters</h2>
+    <p class="sub">And what you can skip — from a dad who's made every mistake.</p>
+
+    <div class="gear-blocks">
+      <div class="gear-block">
+        <h3><span class="g-icon">🐻</span> Bear Spray</h3>
+        <p>Not optional in Alaska. Carry it on your hip, not your pack. Know how to use it before you need to. The canister does nothing buried under your lunch. UDAP or Counter Assault are both solid. Practice the draw at home before your first outing of the season.</p>
+      </div>
+      <div class="gear-block">
+        <h3><span class="g-icon">🧥</span> Layers (For Everyone)</h3>
+        <p>Alaska weather runs a 4-season day. I've started hikes in a t-shirt and ended in a rain jacket. Wool base layer, mid-layer fleece, waterproof shell for every human in your party — including the ones who insist they're "not cold." Especially those ones.</p>
+      </div>
+      <div class="gear-block">
+        <h3><span class="g-icon">👟</span> Real Footwear</h3>
+        <p>Sneakers work for flat coastal and boardwalk trails. Anything with real elevation or rocky terrain — invest in actual hiking boots. Ankle support matters when you're carrying 40 extra pounds of kid back to the car on the return trip.</p>
+      </div>
+      <div class="gear-block">
+        <h3><span class="g-icon">🗺️</span> Offline Navigation</h3>
+        <p>Download AllTrails Pro or Gaia GPS and pull the trail offline before you leave cell service. Anchorage trails are generally well-marked, but "generally" is doing a lot of work in that sentence. Don't rely on signal you don't have.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 32px;">
+      <div class="trail-section-label" style="font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;display:flex;align-items:center;gap:8px;">For Kids Specifically <span style="flex:1;height:1px;background:var(--border);display:block;"></span></div>
+      <div class="gear-blocks">
+        <div class="gear-block">
+          <h3><span class="g-icon">🥢</span> Trekking Poles (Kid Size)</h3>
+          <p>William asked for these from age 5 onward. They dramatically reduce "my legs are tired" complaints on elevation. The investment pays back on the first mountain trail. Also: kids feel like serious hikers with poles. That matters.</p>
+        </div>
+        <div class="gear-block">
+          <h3><span class="g-icon">🎒</span> Toddler Hydration Pack</h3>
+          <p>A small pack with a water bladder transforms a 4-year-old. Suddenly they have a job — carrying their water — and it slows "are we there yet" questions by approximately 40%. I have tested this empirically.</p>
+        </div>
+        <div class="gear-block">
+          <h3><span class="g-icon">🧦</span> Wool Socks</h3>
+          <p>Not cotton. Cotton stays wet and causes blisters. Merino wool stays warm when wet and dries fast. Darn Tough and Smartwool make kid sizes. This is a small thing that prevents a big problem.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 32px;">
+      <div class="trail-section-label" style="font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;display:flex;align-items:center;gap:8px;">Wildlife Protocol — The Short Version <span style="flex:1;height:1px;background:var(--border);display:block;"></span></div>
+      <div class="wildlife-grid">
+        <div class="wildlife-card">
+          <div class="animal">🫎</div>
+          <h4>Moose</h4>
+          <p>Give 50+ feet. If blocking the trail, stop and wait or find a wide detour. If a moose charges, get behind a large tree. Unpredictable and enormous.</p>
+        </div>
+        <div class="wildlife-card">
+          <div class="animal">🐻</div>
+          <h4>Bears</h4>
+          <p>Make noise while hiking — kids are naturally gifted here. Bear spray accessible. Don't run. Back away slowly while talking calmly. Know black bear vs. grizzly response.</p>
+        </div>
+        <div class="wildlife-card">
+          <div class="animal">🦅</div>
+          <h4>Eagles & Ravens</h4>
+          <p>They will steal your snacks. This is not an exaggeration. Supervise children eating outdoors near waterfronts. You've been warned twice now.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     CLOSING
+══════════════════════════════════════ -->
+<div class="closing">
+  <div class="intro-eyebrow">
+    <span>The Dad Debrief</span>
+    <div class="line"></div>
+  </div>
+
+  <h2>The Hike Is Not The Point</h2>
+
+  <p class="closing-body">
+    Here's the thing nobody tells you before you have kids:
+  </p>
+
+  <p class="closing-body">
+    The hike is the context. <strong>The point is the conversation you have on mile 2</strong> when your kid asks why the sky is blue or what happens when you die or whether you think fish have feelings. The point is the moment your 4-year-old stops on the trail, looks around at the mountains, and says "Dad, this is really beautiful" — completely unprompted, completely sincere. (Jeremiah said exactly this. I almost sat down right there on the trail.)
+  </p>
+
+  <p class="closing-body">
+  <p class="closing-body">
+    <em>Alaska is the best place in the world to raise kids who love the outdoors.</em> The access is absurd. The scale is humbling. The wildlife is real. Your kids will grow up thinking that seeing a moose is normal, that mountains are background, that moving water is worth stopping for.
+  </p>
+
+  <p class="closing-body">
+    That is a gift. And you're the one who gives it to them by saying <strong>"let's go"</strong> every weekend even when it's raining, even when you're tired, even when someone is already complaining in the parking lot before you've hit the trailhead.
+  </p>
+
+  <p class="closing-body" style="font-size: 20px; font-weight: 700; color: var(--white);">
+    Keep going. ↑
+  </p>
+
+  <div class="pre-hike-list">
+    <h3>Before Your Next Hike</h3>
+    <ul>
+      <li><strong>Review the trail on AllTrails</strong> — read recent reviews for current conditions. Trail status changes fast in Alaska.</li>
+      <li><strong>Check the weather the morning of</strong> — make a confident go/no-go call before you're in the parking lot with antsy kids.</li>
+      <li><strong>File a trip plan</strong> — tell your spouse, a friend, or use Alaska Mountain Rescue Group's resources.</li>
+      <li><strong>Pack the night before</strong> — morning prep with small children is chaos. Reduce variables.</li>
+      <li><strong>Brief the kids before you leave home</strong> — tell them the trail, the goal, what "hard" looks like, and what the reward is.</li>
+    </ul>
+  </div>
+
+  <div style="margin-top: 40px;">
+    <div class="trail-section-label" style="font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;display:flex;align-items:center;gap:8px;">Resources <span style="flex:1;height:1px;background:var(--border);display:block;"></span></div>
+    <ul class="gear-list">
+      <li>Anchorage Parks Foundation — anchorageparkfoundation.org</li>
+      <li>Chugach State Park — dnr.alaska.gov/parks/units/chugach</li>
+      <li>AllTrails — search "Anchorage, AK" for current conditions and reviews</li>
+      <li>Alaska Trails — aktrails.org</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<div class="footer">
+  <div class="footer-brand">
+    <div class="mark">🧭</div>
+    <div class="name">Northbound Play Co</div>
+  </div>
+  <p>A free guide from Jeff — dad of four, Anchorage resident, and committed believer that the best parenting happens outside. Field tested by William (9), Walter (7), Jeremiah (4), and Jack (1).</p>
+  <div class="final-verse">
+    "But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint."<br>
+    <span style="font-style:normal;font-size:12px;color:var(--muted2);font-weight:600;">— Isaiah 40:31</span>
+  </div>
+</div>
+
+</body>
+</html>
