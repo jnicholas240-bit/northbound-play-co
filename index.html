@@ -708,8 +708,8 @@ ml('account', '2252646');
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 92vh;
-    z-index: 50;
+    height: 98vh;
+    z-index: 0;
     pointer-events: none;
     opacity: 0.08;
     mix-blend-mode: multiply;
@@ -719,9 +719,6 @@ ml('account', '2252646');
     height: 100%;
     width: auto;
     display: block;
-  }
-  @media (max-width: 640px) {
-    .bg-watermark { height: 65vh; }
   }
 
   /* ── FOREGROUND SECTIONS (sit above watermark) ── */
@@ -923,10 +920,9 @@ ml('account', '2252646');
     .nav-logo { height: 44px; }
     .nav-cta { font-size: 11px; padding: 6px 14px; }
 
-    /* ── WATERMARK — ensure it shows through ── */
+    /* ── WATERMARK — big and visible ── */
     .bg-watermark {
-      height: 65vh;
-      z-index: 0;
+      height: 95vh;
     }
     /* Make section backgrounds semi-transparent so watermark bleeds through */
     .grey-section {
