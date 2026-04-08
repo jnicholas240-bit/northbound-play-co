@@ -259,16 +259,103 @@
     color: var(--muted2);
     font-weight: 600;
   }
+
+  /* ── CONFETTI ── */
+  .confetti-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+    overflow: hidden;
+  }
+  .confetti-piece {
+    position: absolute;
+    width: 8px;
+    height: 12px;
+    top: -20px;
+    opacity: 0;
+    animation: confetti-fall 3s ease-out forwards;
+  }
+  @keyframes confetti-fall {
+    0% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+    100% { opacity: 0; transform: translateY(100vh) rotate(720deg) scale(0.5); }
+  }
+
+  /* ── ENTRANCE ANIMATIONS ── */
+  .container > * {
+    animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .container > :nth-child(1) { animation-delay: 0s; }
+  .container > :nth-child(2) { animation-delay: 0.1s; }
+  .container > :nth-child(3) { animation-delay: 0.2s; }
+  .container > :nth-child(4) { animation-delay: 0.3s; }
+  .container > :nth-child(5) { animation-delay: 0.4s; }
+  .container > :nth-child(6) { animation-delay: 0.5s; }
+  .container > :nth-child(7) { animation-delay: 0.6s; }
+  .container > :nth-child(8) { animation-delay: 0.7s; }
+  .container > :nth-child(9) { animation-delay: 0.8s; }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── BUTTON SHINE ── */
+  .btn-guide {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-guide::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transform: skewX(-20deg);
+    animation: btn-shine 3s ease-in-out infinite;
+  }
+  @keyframes btn-shine {
+    0%, 100% { left: -60%; }
+    50% { left: 120%; }
+  }
+
+  /* ── GRADIENT TEXT ── */
+  .gradient-text {
+    background: linear-gradient(135deg, var(--orange) 0%, #00BCD4 25%, var(--orange) 50%, var(--amber) 75%, var(--orange) 100%);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 6s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* ── CHECKMARK RING ── */
+  .checkmark {
+    box-shadow: 0 0 0 0 rgba(46,125,50,0.4);
+    animation: pop 0.4s ease-out, ring-pulse 2s ease-out 0.5s;
+  }
+  @keyframes ring-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(46,125,50,0.4); }
+    100% { box-shadow: 0 0 0 28px rgba(46,125,50,0); }
+  }
 </style>
 </head>
 <body>
+
+<div class="confetti-container" id="confetti"></div>
 
 <div class="container">
   <img src="northbound-logo.png?v=3" class="logo" alt="Northbound Play Co">
 
   <div class="checkmark">&#10003;</div>
 
-  <h1>You're <span class="orange">In</span></h1>
+  <h1>You're <span class="orange gradient-text">In</span></h1>
   <p class="subtitle">Check your inbox — your trail guide is on its way. If you don't see it in a few minutes, check your spam folder.</p>
 
   <div class="guide-card">
@@ -308,5 +395,25 @@
   <p class="footer-note" style="margin-top: 24px;">Northbound Play Co &middot; Anchorage, AK</p>
 </div>
 
+<script>
+// Confetti burst
+(function() {
+  const container = document.getElementById('confetti');
+  const colors = ['#2E7D32', '#0288D1', '#F9A825', '#388E3C', '#00BCD4', '#ef4444', '#22c55e'];
+  for (let i = 0; i < 50; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + '%';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDelay = (Math.random() * 1.5) + 's';
+    piece.style.animationDuration = (2 + Math.random() * 2) + 's';
+    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    piece.style.width = (4 + Math.random() * 8) + 'px';
+    piece.style.height = (4 + Math.random() * 8) + 'px';
+    container.appendChild(piece);
+  }
+  setTimeout(() => container.remove(), 5000);
+})();
+</script>
 </body>
 </html>

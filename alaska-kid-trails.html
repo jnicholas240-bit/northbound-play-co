@@ -1116,15 +1116,154 @@
     .trail-card-header { padding: 20px; }
   }
 
+  /* ── SCROLL PROGRESS BAR ── */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--brand-green), var(--orange), var(--amber));
+    z-index: 200;
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ── GRADIENT TEXT ── */
+  .gradient-text {
+    background: linear-gradient(135deg, var(--orange) 0%, #00BCD4 25%, var(--orange) 50%, var(--amber) 75%, var(--orange) 100%);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 6s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* ── COVER ENTRANCE ── */
+  .cover > * {
+    animation: cover-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .cover > :nth-child(1) { animation-delay: 0s; }
+  .cover > :nth-child(2) { animation-delay: 0.05s; }
+  .cover > :nth-child(3) { animation-delay: 0.1s; }
+  .cover > :nth-child(4) { animation-delay: 0.15s; }
+  .cover > :nth-child(5) { animation-delay: 0.2s; }
+  .cover > :nth-child(6) { animation-delay: 0.25s; }
+  .cover > :nth-child(7) { animation-delay: 0.3s; }
+  .cover > :nth-child(8) { animation-delay: 0.35s; }
+  .cover > :nth-child(9) { animation-delay: 0.4s; }
+  .cover > :nth-child(10) { animation-delay: 0.45s; }
+  @keyframes cover-enter {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── TRAIL CARD GLOW ── */
+  .trail-card::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, rgba(46,125,50,0.25), rgba(2,136,209,0.25), rgba(249,168,37,0.25));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .trail-card:hover::after { opacity: 1; }
+
+  /* ── GEAR BLOCK HOVER ── */
+  .gear-block {
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .gear-block:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(2,136,209,0.18), 0 3px 8px rgba(0,0,0,0.08);
+  }
+
+  /* ── WILDLIFE CARD HOVER ── */
+  .wildlife-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .wildlife-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(46,125,50,0.12);
+  }
+
+  /* ── TOPO PATTERN ON COVER ── */
+  .cover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cpath d='M20 200c40-60 80-20 120-40s80 20 120-10 80-40 120-20' fill='none' stroke='%232E7D32' stroke-width='1'/%3E%3Cpath d='M20 240c50-30 100 10 150-20s100 30 110 0' fill='none' stroke='%232E7D32' stroke-width='0.8'/%3E%3Cpath d='M20 160c60 20 80-40 140-20s80 40 120 10' fill='none' stroke='%232E7D32' stroke-width='0.6'/%3E%3Cpath d='M20 120c30 30 70-10 110 10s90-20 130-5 70 30 110 0' fill='none' stroke='%232E7D32' stroke-width='0.5'/%3E%3Cpath d='M20 280c40 20 90-30 140-10s70 40 120 15 60-30 100-10' fill='none' stroke='%232E7D32' stroke-width='0.7'/%3E%3C/svg%3E");
+    background-size: 400px 400px;
+    pointer-events: none;
+  }
+
+  /* ── MELTDOWN DOT PULSE ── */
+  .meltdown-dot.green { animation: dot-pulse-green 2s ease-in-out infinite; }
+  .meltdown-dot.yellow { animation: dot-pulse-yellow 2s ease-in-out infinite; }
+  .meltdown-dot.red { animation: dot-pulse-red 2s ease-in-out infinite; }
+  @keyframes dot-pulse-green { 0%,100% { box-shadow: 0 0 8px rgba(34,197,94,0.5); } 50% { box-shadow: 0 0 16px rgba(34,197,94,0.8); } }
+  @keyframes dot-pulse-yellow { 0%,100% { box-shadow: 0 0 8px rgba(234,179,8,0.5); } 50% { box-shadow: 0 0 16px rgba(234,179,8,0.8); } }
+  @keyframes dot-pulse-red { 0%,100% { box-shadow: 0 0 8px rgba(239,68,68,0.5); } 50% { box-shadow: 0 0 16px rgba(239,68,68,0.8); } }
+
+  /* ── FOOTER GRADIENT ── */
+  .footer {
+    background: linear-gradient(180deg, #1B5E20 0%, #0D3B10 100%);
+  }
+
+  /* ── FLOATING PARTICLES ON COVER ── */
+  .cover-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    opacity: 0;
+    animation: float-up 8s linear infinite;
+  }
+  @keyframes float-up {
+    0% { opacity: 0; transform: translateY(0) scale(0.5); }
+    10% { opacity: 0.5; }
+    90% { opacity: 0.2; }
+    100% { opacity: 0; transform: translateY(-100vh) scale(1); }
+  }
+
   /* ── PRINT ── */
   @media print {
     body { background: white; color: black; }
     .cover { min-height: auto; padding: 40px; }
     .trail-card { break-inside: avoid; }
+    .scroll-progress, .cover-particles { display: none; }
   }
 </style>
 </head>
 <body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <div class="bg-watermark" aria-hidden="true">
   <img src="northbound-logo.png?v=3" alt="">
@@ -1135,6 +1274,7 @@
 ══════════════════════════════════════ -->
 <div class="cover">
   <div class="cover-grid"></div>
+  <div class="cover-particles" id="coverParticles"></div>
 
   <div class="brand-logo">
     <div class="brand-mark">🧭</div>
@@ -1145,7 +1285,7 @@
 
   <h1>
     Alaska<br>
-    <span class="outline">Kid</span><br>
+    <span class="outline gradient-text">Kid</span><br>
     Trails
   </h1>
 
@@ -1379,7 +1519,7 @@
      TRAIL 2 — TONY KNOWLES COASTAL TRAIL
 ══════════════════════════════════════ -->
 <div style="padding: 0 24px; margin-bottom: 48px;">
-<div class="trail-card">
+<div class="trail-card reveal">
   <div class="trail-card-header">
     <div class="trail-number">02</div>
     <div class="trail-header-text">
@@ -1485,7 +1625,7 @@
      TRAIL 3 — CAMPBELL CREEK GREENBELT
 ══════════════════════════════════════ -->
 <div style="padding: 0 24px; margin-bottom: 48px;">
-<div class="trail-card">
+<div class="trail-card reveal">
   <div class="trail-card-header">
     <div class="trail-number">03</div>
     <div class="trail-header-text">
@@ -1591,7 +1731,7 @@
      TRAIL 4 — FLATTOP / GLEN ALPS
 ══════════════════════════════════════ -->
 <div style="padding: 0 24px; margin-bottom: 48px;">
-<div class="trail-card">
+<div class="trail-card reveal">
   <div class="trail-card-header">
     <div class="trail-number">04</div>
     <div class="trail-header-text">
@@ -1697,7 +1837,7 @@
      TRAIL 5 — KINCAID PARK
 ══════════════════════════════════════ -->
 <div style="padding: 0 24px; margin-bottom: 48px;">
-<div class="trail-card">
+<div class="trail-card reveal">
   <div class="trail-card-header">
     <div class="trail-number">05</div>
     <div class="trail-header-text">
@@ -1803,7 +1943,7 @@
      TRAIL 6 — POTTER MARSH BOARDWALK
 ══════════════════════════════════════ -->
 <div style="padding: 0 24px; margin-bottom: 48px;">
-<div class="trail-card">
+<div class="trail-card reveal">
   <div class="trail-card-header">
     <div class="trail-number">06</div>
     <div class="trail-header-text">
@@ -1909,7 +2049,7 @@
      TRAIL 7 — SHIP CREEK
 ══════════════════════════════════════ -->
 <div style="padding: 0 24px; margin-bottom: 48px;">
-<div class="trail-card">
+<div class="trail-card reveal">
   <div class="trail-card-header">
     <div class="trail-number">07</div>
     <div class="trail-header-text">
@@ -2015,7 +2155,7 @@
      TRAIL 8 — POWERLINE PASS
 ══════════════════════════════════════ -->
 <div style="padding: 0 24px; margin-bottom: 48px;">
-<div class="trail-card">
+<div class="trail-card reveal">
   <div class="trail-card-header">
     <div class="trail-number">08</div>
     <div class="trail-header-text">
@@ -2121,7 +2261,7 @@
      TRAIL 9 — HILLSIDE PARK
 ══════════════════════════════════════ -->
 <div style="padding: 0 24px; margin-bottom: 48px;">
-<div class="trail-card">
+<div class="trail-card reveal">
   <div class="trail-card-header">
     <div class="trail-number">09</div>
     <div class="trail-header-text">
@@ -2227,7 +2367,7 @@
      TRAIL 10 — BIRD RIDGE
 ══════════════════════════════════════ -->
 <div style="padding: 0 24px; margin-bottom: 48px;">
-<div class="trail-card">
+<div class="trail-card reveal">
   <div class="trail-card-header">
     <div class="trail-number">10</div>
     <div class="trail-header-text">
@@ -2338,19 +2478,19 @@
     <p class="sub">And what you can skip — from a dad who's made every mistake.</p>
 
     <div class="gear-blocks">
-      <div class="gear-block">
+      <div class="gear-block reveal">
         <h3><span class="g-icon">🐻</span> Bear Spray</h3>
         <p>Not optional in Alaska. Carry it on your hip, not your pack. Know how to use it before you need to. The canister does nothing buried under your lunch. UDAP or Counter Assault are both solid. Practice the draw at home before your first outing of the season.</p>
       </div>
-      <div class="gear-block">
+      <div class="gear-block reveal">
         <h3><span class="g-icon">🧥</span> Layers (For Everyone)</h3>
         <p>Alaska weather runs a 4-season day. I've started hikes in a t-shirt and ended in a rain jacket. Wool base layer, mid-layer fleece, waterproof shell for every human in your party — including the ones who insist they're "not cold." Especially those ones.</p>
       </div>
-      <div class="gear-block">
+      <div class="gear-block reveal">
         <h3><span class="g-icon">👟</span> Real Footwear</h3>
         <p>Sneakers work for flat coastal and boardwalk trails. Anything with real elevation or rocky terrain — invest in actual hiking boots. Ankle support matters when you're carrying 40 extra pounds of kid back to the car on the return trip.</p>
       </div>
-      <div class="gear-block">
+      <div class="gear-block reveal">
         <h3><span class="g-icon">🗺️</span> Offline Navigation</h3>
         <p>Download AllTrails Pro or Gaia GPS and pull the trail offline before you leave cell service. Anchorage trails are generally well-marked, but "generally" is doing a lot of work in that sentence. Don't rely on signal you don't have.</p>
       </div>
@@ -2359,15 +2499,15 @@
     <div style="margin-top: 32px;">
       <div class="trail-section-label" style="font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;display:flex;align-items:center;gap:8px;">For Kids Specifically <span style="flex:1;height:1px;background:var(--border);display:block;"></span></div>
       <div class="gear-blocks">
-        <div class="gear-block">
+        <div class="gear-block reveal">
           <h3><span class="g-icon">🥢</span> Trekking Poles (Kid Size)</h3>
           <p>William asked for these from age 5 onward. They dramatically reduce "my legs are tired" complaints on elevation. The investment pays back on the first mountain trail. Also: kids feel like serious hikers with poles. That matters.</p>
         </div>
-        <div class="gear-block">
+        <div class="gear-block reveal">
           <h3><span class="g-icon">🎒</span> Toddler Hydration Pack</h3>
           <p>A small pack with a water bladder transforms a 4-year-old. Suddenly they have a job — carrying their water — and it slows "are we there yet" questions by approximately 40%. I have tested this empirically.</p>
         </div>
-        <div class="gear-block">
+        <div class="gear-block reveal">
           <h3><span class="g-icon">🧦</span> Wool Socks</h3>
           <p>Not cotton. Cotton stays wet and causes blisters. Merino wool stays warm when wet and dries fast. Darn Tough and Smartwool make kid sizes. This is a small thing that prevents a big problem.</p>
         </div>
@@ -2377,17 +2517,17 @@
     <div style="margin-top: 32px;">
       <div class="trail-section-label" style="font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;display:flex;align-items:center;gap:8px;">Wildlife Protocol — The Short Version <span style="flex:1;height:1px;background:var(--border);display:block;"></span></div>
       <div class="wildlife-grid">
-        <div class="wildlife-card">
+        <div class="wildlife-card reveal">
           <div class="animal">🫎</div>
           <h4>Moose</h4>
           <p>Give 50+ feet. If blocking the trail, stop and wait or find a wide detour. If a moose charges, get behind a large tree. Unpredictable and enormous.</p>
         </div>
-        <div class="wildlife-card">
+        <div class="wildlife-card reveal">
           <div class="animal">🐻</div>
           <h4>Bears</h4>
           <p>Make noise while hiking — kids are naturally gifted here. Bear spray accessible. Don't run. Back away slowly while talking calmly. Know black bear vs. grizzly response.</p>
         </div>
-        <div class="wildlife-card">
+        <div class="wildlife-card reveal">
           <div class="animal">🦅</div>
           <h4>Eagles & Ravens</h4>
           <p>They will steal your snacks. This is not an exaggeration. Supervise children eating outdoors near waterfronts. You've been warned twice now.</p>
@@ -2486,5 +2626,38 @@
   </div>
 </div>
 
+<script>
+// Scroll progress bar
+const progressBar = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  progressBar.style.width = pct + '%';
+}, { passive: true });
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Floating particles on cover
+(function() {
+  const container = document.getElementById('coverParticles');
+  if (!container) return;
+  const colors = ['#2E7D32', '#0288D1', '#F9A825', '#388E3C'];
+  for (let i = 0; i < 15; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.top = (60 + Math.random() * 40) + '%';
+    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+    p.style.animationDelay = (Math.random() * 8) + 's';
+    p.style.animationDuration = (6 + Math.random() * 6) + 's';
+    p.style.width = p.style.height = (2 + Math.random() * 4) + 'px';
+    container.appendChild(p);
+  }
+})();
+</script>
 </body>
 </html>
